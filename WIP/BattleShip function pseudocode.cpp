@@ -5,10 +5,9 @@
 // Joseph Chalker CSC 201 
 // 04/05/2022
 
-/*------------------------Preconditions-------------------------
-shipGame.playerGrid[9][9] has been initialized and is accessible
-shipGame.water has been initialized and has a char value stored
---------------------------------------------------------------*/
+// This functions initializes all elements of a 10x10 2D array with '~'
+// Pre: 10x10 2D char array has been declared
+// Post: All elements of the 2D array are initialized to '~'
 void playerGridInit()
 {
 	loop over 10 iterations starting from int i = 0 {
@@ -17,15 +16,12 @@ void playerGridInit()
 		}
 	}
 }
-/*------------------------Postconditions-------------------------
-shipGame.playerGrid[9][9] array has been filled with shipGame.water
---------------------------------------------------------------*/
 
 
-/*------------------------Preconditions-------------------------
-shipGame.cpuGrid[9][9] has been initialized and is accessible
-shipGame.water has been initialized and has a char value stored
---------------------------------------------------------------*/
+// This function selects random placement for 5 Battlship boats
+// on a 10x10 2D array gameboard, with '#' representing a boat link
+// Pre: 10x10 array has been initialized with '~' water chars
+// Post: Battleship style boats have been placed on the board
 void cpuGridInit()
 {
 
@@ -33,16 +29,12 @@ void cpuGridInit()
 	fill 5 random spots within the array with ships ('#')
 	
 }
-/*------------------------Postconditions-------------------------
-shipGame.cpuGrid[9][9] array has been filled with shipGame.water
-five seperate values with shipGame.cpuGrid[9][9] have also been
-filled with shipGame.ship
---------------------------------------------------------------*/
 
 
-/*------------------------Preconditions-------------------------
-shipGame.playerGrid[9][9] has been initialized and is accessible
---------------------------------------------------------------*/
+// This function outputs the current state of a 10x10 2D array to console
+// Pre: 10x10 2D array has been declared and all elements contain a char
+// Post: The array has been displayed on screen along with numeration along 
+//       x and y axis
 void outputGrid()
 {
 	loop over 10 iterations starting from int i = 0 {
@@ -55,16 +47,12 @@ void outputGrid()
         	output "  0123456789" underneath the previous line to create margin on bottom axis
         }
 }
-/*------------------------Postconditions-------------------------
-The array has been output to the console in a 10 x 10 grid with
-margins on the x & y axis to designate their coordinates on grid
---------------------------------------------------------------*/
 
-/*------------------------Preconditions-------------------------
-integer values have been passed by reference to int x & int y,
-as arguments of playerInput
-shipGame.playerGrid[9][9] has been initialized and is accessible
---------------------------------------------------------------*/
+// This function takes input from player selecting coordinates on grid
+// and outputs game result of input to screen
+// Pre: 2D array board has been initialized and updated with ships
+// Post: 2D array board has been updated with user input,
+//       message output to screen with result (hit or miss)
 void playerInput(int& x, int& y) {
 
 	prompt user to input the coordinates to check for ships & store result
@@ -83,18 +71,12 @@ void playerInput(int& x, int& y) {
 
 	
 }
-/*------------------------Postconditions-------------------------
-a message has been output to the player to input values for X & Y
-Player has input valid int x & int y values
------------------------------------------------------------------*/
 
-/*------------------------Preconditions-------------------------
-integer values have been passed to int x & int y as arguments of checkCoordinates
-shipGame.cpuGrid[9][9] has been initialized and is accessible
-shipGame.playerGrid[9][9] has been initialized and is accessible
-----------------------------------------------------------------*/
-void checkCoordinates(int x, int y) {
-
+// This function updates the 2D board according to user input from caller
+// Pre: 2D array is initialized and user has entered valid input within coordinates
+// Post: Returns to caller true if ship hit, false if a miss
+bool checkCoordinates(int x, int y) {                // changing this to bool. I see this function as being called from playerInput. We could have it update
+                                                     // the grid by address, or we can just leave this for playerInput (or separate function)
     if the position in the cpu grid array is water
     output that player has not hit a ship
     position in player grid array equals '.' for miss
@@ -102,7 +84,3 @@ void checkCoordinates(int x, int y) {
     output that player has hit a ship
     position in player grid array equals 'H' for hit
 }
-/*------------------------Postconditions-------------------------
-The player has been notified via the console whether or not they
-have missed a ship, or hit a ship, and the array is updated accordingly
------------------------------------------------------------------*/

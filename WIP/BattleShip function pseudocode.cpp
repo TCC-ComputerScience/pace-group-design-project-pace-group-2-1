@@ -4,6 +4,7 @@
 // hit ships will be replaced with 'H' and missed ships will be replaced with '.'
 // Joseph Chalker CSC 201 
 // 04/05/2022
+// Edited by Emanuil Stanchev on 4/12
 
 // This functions initializes all elements of a 10x10 2D array with '~'
 // Pre: 10x10 2D char array has been declared

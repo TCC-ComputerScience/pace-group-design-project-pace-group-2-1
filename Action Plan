@@ -1,10 +1,12 @@
-//I know this isnt great as we didn't get a complete set of instructions
-//The data types are not properly set up as far as array indexing is concerned 
-//I just picked two simple functions that should work on the proposed data structures should the arrays be fixed.
 
 #include <iostream>
 
 using namespace std;
+
+const int boardSize = 10;
+const int numberOfBoards = 2;
+const int numberOfShips = 5;
+const int maxShipSize = 4;
 
 enum GameStatus
 {
@@ -27,12 +29,14 @@ enum ShipType
     Submarine,  // 3 tiles
     Destroyer   // 2 tiles
 };
+
 struct Ship
 {
     ShipType type;
-    //int[4][2] position; // largest ships can be on up to 4 tiles while smallest ship only covers 2 tiles, second array is x/y
+    int position[maxShipSize][numberOfBoards]; // largest ships can be on up to 4 tiles while smallest ship only covers 2 tiles, second array is x/y
     //bool[4] damage;     // true if that section of the ship has been hit.
 };
+
 struct Tile
 {
     int x;
@@ -45,20 +49,23 @@ struct GameState
 {
     GameStatus status;
 
-    int boardSize = 10;
-    //Tile board[2][boardSize][boardSize]; // 2 boards, 1 for each player
+    Tile board[numberOfBoards][boardSize][boardSize]; // 2 boards, 1 for each player
 
-    //Ship[2][5] playerShipStatus; // handles data on current status of player ships
+    //Ship playerShipStatus[numberOfBoards][numberOfShips]; // handles data on current status of player ships
 
     int player1Score;
     int player2Score;
 };
 
+Tile GetGuess();
+void CheckGuess(GameState& gameState, int playernumber);
 
 int main()
 
 {
-
+    GameState gameState;
+    gameState.board[1][5][5].type = Ship;
+    CheckGuess( gameState, 1);
 
 
 
@@ -82,14 +89,14 @@ Tile GetGuess()
 //Checks a guess and updates board status variable
 //Pre: playernumber is assigned, board is defined
 //Post: board coordinates status is updated
-void CheckGuess(GameState board, int playernumber)
+void CheckGuess(GameState& gameState, int playernumber)
 {
     Tile guess = GetGuess(); //get guess from player
 
     //update coordinates for playernumber board
-    if(board[playernumber][guess.x][guess.y].type == Ship)
+    if( gameState.board[playernumber][guess.x][guess.y].type == Ship)
     {
-        board[playernumber[guess.x][guess.y].status = 'H';
+        gameState.board[playernumber][guess.x][guess.y].status = 'H';
     }
+    cout << "Status: " << gameState.board[playernumber][guess.x][guess.y].status << endl;
 }
-
